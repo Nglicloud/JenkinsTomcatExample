@@ -15,7 +15,18 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
+<distributionManagement>
+    <repository>
+        <id>central</id>
+        <name>ip-172-31-30-22.eu-north-1.compute.internal-releases</name>
+        <url>http://51.20.86.162:8081/artifactory/Maven-Local</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>ip-172-31-30-22.eu-north-1.compute.internal-snapshots</name>
+        <url>http://51.20.86.162:8081/artifactory/Maven-Local</url>
+    </snapshotRepository>
+</distributionManagement>
   <build>
     <finalName>java-tomcat-maven-example</finalName>
     <plugins>
