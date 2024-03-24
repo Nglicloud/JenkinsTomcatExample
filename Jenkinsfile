@@ -33,7 +33,10 @@ pipeline {
                 script {
                     def tomcatUrl = 'http://51.20.86.162:8080/'
                     def warFilePath = '/home/ec2-user/tomcat/webapps'
-                    bat 'wget --user=tomcat --password=s3cret --post-file=' + warFilePath + ' ' + tomcatUrl + '/manager/text/deploy?path=/webapps'
+                    bat """
+                    powershell -Command \"\$user='tomcat'; \$pass='s3cret'; \$cred = New-Object System.Management.Automation.PSCredential(\$user, (\$pass | ConvertTo-SecureString -AsPlainText -Force)); Invoke-WebRequest -Uri '${tomcatUrl}/manager/text/deploy?path=/webapps' -Method Post -Credential \$cred -InFile '${warFilePath}'\"
+                    """
+
                 }
             }
         }
