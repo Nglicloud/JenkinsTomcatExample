@@ -20,7 +20,7 @@ pipeline {
             steps {
                 // Publish artifact to JFrog Artifactory
                 script {
-                    def server = Artifactory.server 'http://51.20.86.162:8082/artifactory'
+                    def server = Artifactory.server 'Jfrog-Maven'
                     def buildInfo = Artifactory.newBuildInfo()
                     server.publishBuildInfo buildInfo
                 }
