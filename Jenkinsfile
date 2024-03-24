@@ -29,13 +29,8 @@ pipeline {
         
         stage('Deploy to Tomcat') {
             steps {
-                // Deploy artifact to Tomcat
-                script {
-                    def tomcatUrl = 'http://51.20.86.162:8080/'
-                    def warFilePath = '/home/ec2-user/tomcat/webapps'
-                    bat "scp -o StrictHostKeyChecking=no ${warFilePath} ec2-user@51.20.86.162:/tmp"
-                    bat "ssh -o StrictHostKeyChecking=no ec2-user@51.20.86.162 'sudo mv /tmp/${warFileName} /home/ec2-user/tomcat/webapps"
-
+                sshPublisher(publishers: [sshPublisherDesc(configName: 'tomcat', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '', remoteDirectorySDF: false, removePrefix: 'target', sourceFiles: 'target/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+   
                 }
             }
         }
