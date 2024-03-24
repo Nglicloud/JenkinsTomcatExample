@@ -33,9 +33,8 @@ pipeline {
                 script {
                     def tomcatUrl = 'http://51.20.86.162:8080/'
                     def warFilePath = '/home/ec2-user/tomcat/webapps'
-                    bat """
-                    powershell -Command \"\$user='tomcat'; \$pass='s3cret'; \$cred = New-Object System.Management.Automation.PSCredential(\$user, (\$pass | ConvertTo-SecureString -AsPlainText -Force)); Invoke-WebRequest -Uri '${tomcatUrl}/manager/text/deploy?path=/webapps' -Method Post -Credential \$cred -InFile '${warFilePath}'\"
-                    """
+                    sh "scp -o StrictHostKeyChecking=no ${warFilePath} ec2-user@51.20.86.162:/tmp"
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.86.162 'sudo mv /tmp/${warFileName} /home/ec2-user/tomcat/webapps/
 
                 }
             }
