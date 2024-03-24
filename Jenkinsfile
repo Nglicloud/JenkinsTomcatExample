@@ -33,7 +33,7 @@ pipeline {
                 script {
                     def tomcatUrl = 'http://51.20.86.162:8080/'
                     def warFilePath = '/home/ec2-user/tomcat/webapps'
-                    bat "wget --user=tomcat --password=s3cret --post-file=${warFilePath} ${tomcatUrl}/manager/text/deploy?path=/webapps"
+                    bat 'wget --user=tomcat --password=s3cret --post-file=' + warFilePath + ' ' + tomcatUrl + '/manager/text/deploy?path=/webapps'
                 }
             }
         }
