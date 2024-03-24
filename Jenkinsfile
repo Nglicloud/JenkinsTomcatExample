@@ -12,7 +12,7 @@ pipeline {
         stage('Build') {
             steps {
                 // Build using Maven
-                bat 'clean install'
+                bat 'mvn clean package'
             }
         }
         
