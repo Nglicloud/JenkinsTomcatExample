@@ -34,7 +34,7 @@ pipeline {
                     def tomcatUrl = 'http://51.20.86.162:8080/'
                     def warFilePath = '/home/ec2-user/tomcat/webapps'
                     sh "scp -o StrictHostKeyChecking=no ${warFilePath} ec2-user@51.20.86.162:/tmp"
-                    sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.86.162 'sudo mv /tmp/${warFileName} /home/ec2-user/tomcat/webapps/
+                    sh "ssh -o StrictHostKeyChecking=no ec2-user@51.20.86.162 'sudo mv /tmp/${warFileName} /home/ec2-user/tomcat/webapps
 
                 }
             }
